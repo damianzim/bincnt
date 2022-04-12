@@ -3,13 +3,19 @@
 `timescale 1ns / 1ns
 
 module bincnt_tb;
-	reg [1:0] x;
-	wire [1:0] y;
+	reg [2:0] x;
+	wire [1:0] y2b;
+	wire [2:0] y3b;
 	integer i;
 
 	sorter2b srt2b (
 		.x (x[1:0]),
-		.y (y[1:0])
+		.y (y2b)
+	);
+
+	sorter3b srt3b (
+		.x (x[2:0]),
+		.y (y3b)
 	);
 
 	initial begin
@@ -18,8 +24,8 @@ module bincnt_tb;
 	end
 
 	initial begin
-		$display("test: sorter2b");
-		for (i = 0; i < 4; i = i + 1) begin
+		$display("test: sorter2b, sorter3b");
+		for (i = 0; i < 8; i = i + 1) begin
 			x = i;
 			#10;
 		end
