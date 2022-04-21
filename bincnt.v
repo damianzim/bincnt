@@ -30,3 +30,31 @@ module sorter3b (
 	);
 endmodule
 
+module sorter4b (
+	input wire [3:0] x,
+	output wire [3:0] y
+);
+	wire [3:0] l1;
+	wire [1:0] l2;
+	sorter2b s_3_2 (
+		.x (x[3:2]),
+		.y (l1[3:2])
+	);
+	sorter2b s_1_0 (
+		.x (x[1:0]),
+		.y (l1[1:0])
+	);
+	sorter2b s_3_1 (
+		.x ({l1[3], l1[1]}),
+		.y ({y[3], l2[0]})
+	);
+	sorter2b s_2_0 (
+		.x ({l1[2], l1[0]}),
+		.y ({l2[1], y[0]})
+	);
+	sorter2b s_2_1 (
+		.x (l2),
+		.y (y[2:1])
+	);
+endmodule
+
