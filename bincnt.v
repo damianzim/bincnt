@@ -58,3 +58,14 @@ module sorter4b (
 	);
 endmodule
 
+module mux2b (
+	input wire [1:0] x,
+	input wire s,
+	output wire y
+);
+	wire [1:0] l1;
+	and (l1[0], x[0], ~s);
+	and (l1[1], x[1], s);
+	or (y, l1[0], l1[1]);
+endmodule
+

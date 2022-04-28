@@ -7,6 +7,7 @@ module bincnt_tb;
 	wire [1:0] y2b;
 	wire [2:0] y3b;
 	wire [3:0] y4b;
+	wire ymux2b;
 	integer i;
 
 	sorter2b srt2b (
@@ -24,13 +25,19 @@ module bincnt_tb;
 		.y (y4b)
 	);
 
+	mux2b mux2 (
+		.x (x[1:0]),
+		.s (x[2]),
+		.y (ymux2b)
+	);
+
 	initial begin
 		$dumpfile("bincnt_tb.vcd");
 		$dumpvars(0, bincnt_tb);
 	end
 
 	initial begin
-		$display("test: sorter2b, sorter3b, sorter4b");
+		$display("test: sorter2b, sorter3b, sorter4b, mux2b");
 		for (i = 0; i < 16; i = i + 1) begin
 			x = i;
 			#10;
