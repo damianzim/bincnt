@@ -10,3 +10,5 @@ vvp bin/bincnt
 iverilog -Wall -g2012 -o bin/bincnt7b3 bincnt7b3_tb.v bincnt.v
 vvp bin/bincnt7b3
 
+iverilog -Wall -g2012 -o bin/binmul16b binmul16b.v bincnt.v binmul16b_tb.v
+vvp bin/binmul16b
