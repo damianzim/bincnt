@@ -20,6 +20,8 @@ module multiplier16b (
 	input wire [15:0] x, y,
 	output wire [31:0] z
 );
+	wire of; // Unused
+
 	wire [15:0][15:0] l1;
 
 	assign l1[0] = y[0] == 0 ? '0 : x;
@@ -137,6 +139,8 @@ module multiplier16b (
 	wire [1:0] l4p30;
 	wire [1:0] l4p31;
 
+	wire [31:2] zc; // Output z carry
+
 	// ===== BEGIN L1 =====
 	ha hal1p1 (.x ({l1[0][1], l1[1][0]}), .y ({l2p2[0], l2p1})); // R: l2p2[0:0], l2p1
 	fa fal1p2 (.x ({l1[0][2], l1[1][1], l1[2][0]}), .y ({l2p3[0], l2p2[1]})); // R: l2p3[0], l2p2[1:0]
@@ -192,7 +196,7 @@ module multiplier16b (
 	); // R: l2p13[1:0], l2p12[3:0], l2p11[4:0]
 	counter7b3 cnt7bl1p12_0 (
 		.x ({l1[0][12], l1[1][11], l1[2][10], l1[3][9], l1[4][8], l1[5][7], l1[6][6]}),
-		.y ({l2p14[0], l2p11[2], l2p12[4]})
+		.y ({l2p14[0], l2p13[2], l2p12[4]})
 	); // R: l2p14[0], l2p13[2:0], l2p12[4:0]
 	counter7b3 cnt7bl1p12_1 (
 		.x ({l1[7][5], l1[8][4], l1[9][3], l1[10][2], l1[11][1], l1[12][0], 1'b0}),
@@ -402,7 +406,7 @@ module multiplier16b (
 		.y ({l3p27[0], l3p26[1]})
 	); // R: l3p27[0], l3p26[1:0]
 	fa fal3p27 (
-		.x (l2p28),
+		.x (l2p27),
 		.y ({l3p28[0], l3p27[1]})
 	); // R: l3p28[0], l3p27[1:0]
 	fa fal3p28 (
@@ -415,7 +419,7 @@ module multiplier16b (
 	); // R: l3p30[0], l3p29[1:0]
 	ha hal3p30 (
 		.x (l2p30),
-		.y ({l3p31, l3p20[1]})
+		.y ({l3p31, l3p30[1]})
 	); // R: l3p31, l3p30[1:0]
 	// ===== END L2 =====
 
@@ -446,6 +450,39 @@ module multiplier16b (
 	assign l4p31[1] = l3p31;
 	// ===== END L3 =====
 
-	//assign z[15:0] = x;
-	//assign z[31:16] = y;
+	// ===== BEGIN output z =====
+	assign z[0] = l4p0;
+	assign z[1] = l4p1;
+	ha hazp2 (.x (l4p2), .y ({zc[2], z[2]}));
+	fa fazp3 (.x ({l4p3, zc[2]}), .y ({zc[3], z[3]}));
+	fa fazp4 (.x ({l4p4, zc[3]}), .y ({zc[4], z[4]}));
+	ha hazp5 (.x ({l4p5, zc[4]}), .y ({zc[5], z[5]}));
+	fa fazp6 (.x ({l4p6, zc[5]}), .y ({zc[6], z[6]}));
+	fa fazp7 (.x ({l4p7, zc[6]}), .y ({zc[7], z[7]}));
+	fa fazp8 (.x ({l4p8, zc[7]}), .y ({zc[8], z[8]}));
+	ha hazp9 (.x ({l4p9, zc[8]}), .y ({zc[9], z[9]}));
+	fa fazp10 (.x ({l4p10, zc[9]}),  .y ({zc[10], z[10]}));
+	fa fazp11 (.x ({l4p11, zc[10]}), .y ({zc[11], z[11]}));
+	fa fazp12 (.x ({l4p12, zc[11]}), .y ({zc[12], z[12]}));
+	fa fazp13 (.x ({l4p13, zc[12]}), .y ({zc[13], z[13]}));
+	fa fazp14 (.x ({l4p14, zc[13]}), .y ({zc[14], z[14]}));
+	fa fazp15 (.x ({l4p15, zc[14]}), .y ({zc[15], z[15]}));
+	fa fazp16 (.x ({l4p16, zc[15]}), .y ({zc[16], z[16]}));
+	fa fazp17 (.x ({l4p17, zc[16]}), .y ({zc[17], z[17]}));
+	fa fazp18 (.x ({l4p18, zc[17]}), .y ({zc[18], z[18]}));
+	fa fazp19 (.x ({l4p19, zc[18]}), .y ({zc[19], z[19]}));
+	fa fazp20 (.x ({l4p20, zc[19]}), .y ({zc[20], z[20]}));
+	fa fazp21 (.x ({l4p21, zc[20]}), .y ({zc[21], z[21]}));
+	fa fazp22 (.x ({l4p22, zc[21]}), .y ({zc[22], z[22]}));
+	fa fazp23 (.x ({l4p23, zc[22]}), .y ({zc[23], z[23]}));
+	fa fazp24 (.x ({l4p24, zc[23]}), .y ({zc[24], z[24]}));
+	fa fazp25 (.x ({l4p25, zc[24]}), .y ({zc[25], z[25]}));
+	fa fazp26 (.x ({l4p26, zc[25]}), .y ({zc[26], z[26]}));
+	fa fazp27 (.x ({l4p27, zc[26]}), .y ({zc[27], z[27]}));
+	fa fazp28 (.x ({l4p28, zc[27]}), .y ({zc[28], z[28]}));
+	fa fazp29 (.x ({l4p29, zc[28]}), .y ({zc[29], z[29]}));
+	fa fazp30 (.x ({l4p30, zc[29]}), .y ({zc[30], z[30]}));
+	fa fazp31 (.x ({l4p31, zc[30]}), .y ({zc[31], z[31]}));
+	assign of = zc[31];
+	// ===== END output z =====
 endmodule

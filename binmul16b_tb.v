@@ -20,8 +20,8 @@ module binmul16b_tb;
 
 	initial begin
 		$display("test: multiplier16b");
-		x = 16'hdeaf;
-		y = 16'h0003;
+		x = 16'hdead;
+		y = 16'hbeef;
 		#10;
 		$finish;
 	end
