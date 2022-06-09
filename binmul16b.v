@@ -104,6 +104,39 @@ module multiplier16b (
 	wire [1:0] l3p30;
 	wire l3p31;
 
+	wire l4p0 = l3p0; // Raw connection between layers for consistency.
+	wire l4p1 = l3p1;
+	wire [1:0] l4p2 = l3p2;
+	wire [1:0] l4p3 = l3p3;
+	wire [1:0] l4p4 = l3p4;
+	wire l4p5 = l3p5;
+	wire [1:0] l4p6 = l3p6;
+	wire [1:0] l4p7 = l3p7;
+	wire [1:0] l4p8 = l3p8;
+	wire l4p9;
+	wire [1:0] l4p10;
+	wire [1:0] l4p11;
+	wire [1:0] l4p12;
+	wire [1:0] l4p13;
+	wire [1:0] l4p14;
+	wire [1:0] l4p15;
+	wire [1:0] l4p16;
+	wire [1:0] l4p17;
+	wire [1:0] l4p18;
+	wire [1:0] l4p19;
+	wire [1:0] l4p20;
+	wire [1:0] l4p21;
+	wire [1:0] l4p22;
+	wire [1:0] l4p23;
+	wire [1:0] l4p24;
+	wire [1:0] l4p25;
+	wire [1:0] l4p26;
+	wire [1:0] l4p27;
+	wire [1:0] l4p28;
+	wire [1:0] l4p29;
+	wire [1:0] l4p30;
+	wire [1:0] l4p31;
+
 	// ===== BEGIN L1 =====
 	ha hal1p1 (.x ({l1[0][1], l1[1][0]}), .y ({l2p2[0], l2p1})); // R: l2p2[0:0], l2p1
 	fa fal1p2 (.x ({l1[0][2], l1[1][1], l1[2][0]}), .y ({l2p3[0], l2p2[1]})); // R: l2p3[0], l2p2[1:0]
@@ -385,6 +418,33 @@ module multiplier16b (
 		.y ({l3p31, l3p20[1]})
 	); // R: l3p31, l3p30[1:0]
 	// ===== END L2 =====
+
+	// ===== BEGIN L3 =====
+	fa fal4p9 (.x (l3p9), .y ({l4p10[0], l4p9}));
+	fa fal4p10 (.x (l3p10), .y ({l4p11[0], l4p10[1]}));
+	fa fal4p11 (.x (l3p11), .y ({l4p12[0], l4p11[1]}));
+	fa fal4p12 (.x (l3p12), .y ({l4p13[0], l4p12[1]}));
+	fa fal4p13 (.x (l3p13), .y ({l4p14[0], l4p13[1]}));
+	fa fal4p14 (.x (l3p14), .y ({l4p15[0], l4p14[1]}));
+	fa fal4p15 (.x (l3p15), .y ({l4p16[0], l4p15[1]}));
+	fa fal4p16 (.x (l3p16), .y ({l4p17[0], l4p16[1]}));
+	fa fal4p17 (.x (l3p17), .y ({l4p18[0], l4p17[1]}));
+	fa fal4p18 (.x (l3p18), .y ({l4p19[0], l4p18[1]}));
+	fa fal4p19 (.x (l3p19), .y ({l4p20[0], l4p19[1]}));
+	fa fal4p20 (.x (l3p20), .y ({l4p21[0], l4p20[1]}));
+	fa fal4p21 (.x (l3p21), .y ({l4p22[0], l4p21[1]}));
+	fa fal4p22 (.x (l3p22), .y ({l4p23[0], l4p22[1]}));
+	fa fal4p23 (.x (l3p23), .y ({l4p24[0], l4p23[1]}));
+	fa fal4p24 (.x (l3p24), .y ({l4p25[0], l4p24[1]}));
+	fa fal4p25 (.x (l3p25), .y ({l4p26[0], l4p25[1]}));
+
+	ha hal4p26 (.x (l3p26), .y ({l4p27[0], l4p26[1]}));
+	ha hal4p27 (.x (l3p27), .y ({l4p28[0], l4p27[1]}));
+	ha hal4p28 (.x (l3p28), .y ({l4p29[0], l4p28[1]}));
+	ha hal4p29 (.x (l3p29), .y ({l4p30[0], l4p29[1]}));
+	ha hal4p30 (.x (l3p30), .y ({l4p31[0], l4p30[1]}));
+	assign l4p31[1] = l3p31;
+	// ===== END L3 =====
 
 	//assign z[15:0] = x;
 	//assign z[31:16] = y;
