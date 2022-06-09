@@ -71,6 +71,39 @@ module multiplier16b (
 	wire [2:0] l2p29;
 	wire [1:0] l2p30;
 
+	wire l3p0 = l2p0;
+	wire l3p1 = l2p1;
+	wire [1:0] l3p2 = l2p2;
+	wire [1:0] l3p3 = l2p3;
+	wire [1:0] l3p4 = l2p4;
+	wire l3p5;
+	wire [1:0] l3p6;
+	wire [1:0] l3p7;
+	wire [1:0] l3p8;
+	wire [2:0] l3p9;
+	wire [2:0] l3p10;
+	wire [2:0] l3p11;
+	wire [2:0] l3p12;
+	wire [2:0] l3p13;
+	wire [2:0] l3p14;
+	wire [2:0] l3p15;
+	wire [2:0] l3p16;
+	wire [2:0] l3p17;
+	wire [2:0] l3p18;
+	wire [2:0] l3p19;
+	wire [2:0] l3p20;
+	wire [2:0] l3p21;
+	wire [2:0] l3p22;
+	wire [2:0] l3p23;
+	wire [2:0] l3p24;
+	wire [2:0] l3p25;
+	wire [1:0] l3p26;
+	wire [1:0] l3p27;
+	wire [1:0] l3p28;
+	wire [1:0] l3p29;
+	wire [1:0] l3p30;
+	wire l3p31;
+
 	// ===== BEGIN L1 =====
 	ha hal1p1 (.x ({l1[0][1], l1[1][0]}), .y ({l2p2[0], l2p1})); // R: l2p2[0:0], l2p1
 	fa fal1p2 (.x ({l1[0][2], l1[1][1], l1[2][0]}), .y ({l2p3[0], l2p2[1]})); // R: l2p3[0], l2p2[1:0]
@@ -232,7 +265,7 @@ module multiplier16b (
 		.y ({l2p28[0], l2p27[1], l2p26[2]})
 	); // R: l2p28[0], l2p27[1:0], l2p26[2:0]
 	counter7b3 cnt7bl1p27 (
-		.x ({l1[12][15], l1[13][14], l1[14][13], l1[15][12]}),
+		.x ({l1[12][15], l1[13][14], l1[14][13], l1[15][12], 3'b000}),
 		.y ({l2p29[0], l2p28[1], l2p27[2]})
 	); // R: l2p29[0], l2p28[1:0], l2p27[2:0]
 	fa fal1p28 (
@@ -245,6 +278,113 @@ module multiplier16b (
 	); // R: l2p30[0], l2p29[2:0]
 	assign l2p30[1] = l1[15][15];
 	// ===== END L1 =====
+
+	// ===== BEGIN L2 =====
+	fa fal2p5 (
+		.x (l2p5),
+		.y ({l3p6[0], l3p5})
+	); // R: l3p6[0], l3p5[0]
+	fa fal2p6 (
+		.x (l2p6),
+		.y ({l3p7[0], l3p6[1]})
+	); // R: l3p7[0], l3p6[1:0]
+	counter7b3 cnt7bl2p7 (
+		.x ({l2p7, 3'b000}),
+		.y ({l3p9[0], l3p8[0], l3p7[1]})
+	); // R: l3p9[0], l3p8[0], l3p7[1:0]
+	counter7b3 cnt7bl2p8 (
+		.x ({l2p8, 2'b00}),
+		.y ({l3p10[0], l3p9[1], l3p8[1]})
+	); // R: l3p10[0], l3p9[1:0], l3p8[1:0]
+	counter7b3 cnt7bl2p9 (
+		.x ({l2p9, 3'b000}),
+		.y ({l3p11[0], l3p10[1], l3p9[2]})
+	); // R: l3p11[0], l3p10[1:0], l3p9[2:0]
+	counter7b3 cnt7bl2p10 (
+		.x ({l2p10, 2'b00}),
+		.y ({l3p12[0], l3p11[1], l3p10[2]})
+	); // R: l3p12[0], l3p11[1:0], l3p10[2:0]
+	counter7b3 cnt7bl2p11 (
+		.x ({l2p11, 2'b00}),
+		.y ({l3p13[0], l3p12[1], l3p11[2]})
+	); // R: l3p13[0], l3p12[1:0], l3p11[2:0]
+	counter7b3 cnt7bl2p12 (
+		.x ({l2p12, 1'b0}),
+		.y ({l3p14[0], l3p13[1], l3p12[2]})
+	); // R: l3p14[0], l3p13[1:0], l3p12[2:0]
+	counter7b3 cnt7bl2p13 (
+		.x ({l2p13, 1'b0}),
+		.y ({l3p15[0], l3p14[1], l3p13[2]})
+	); // R: l3p15[0], l3p14[1:0], l3p13[2:0]
+	counter7b3 cnt7bl2p14 (
+		.x (l2p14),
+		.y ({l3p16[0], l3p15[1], l3p14[2]})
+	); // R: l3p16[0], l3p15[1:0], l3p14[2:0]
+	counter7b3 cnt7bl2p15 (
+		.x (l2p15),
+		.y ({l3p17[0], l3p16[1], l3p15[2]})
+	); // R: l3p17[0], l3p16[1:0], l3p15[2:0]
+	counter7b3 cnt7bl2p16 (
+		.x (l2p16),
+		.y ({l3p18[0], l3p17[1], l3p16[2]})
+	); // R: l3p17[0], l3p16[1:0], l3p15[2:0]
+	counter7b3 cnt7bl2p17 (
+		.x (l2p17),
+		.y ({l3p19[0], l3p18[1], l3p17[2]})
+	); // R: l3p19[0], l3p18[1], l3p17[2]
+	counter7b3 cnt7bl2p18 (
+		.x ({l2p18, 1'b0}),
+		.y ({l3p20[0], l3p19[1], l3p18[2]})
+	); // R: l3p20[0], l3p19[1:0], l3p18[2:0]
+	counter7b3 cnt7bl2p19 (
+		.x ({l2p19, 1'b0}),
+		.y ({l3p21[0], l3p20[1], l3p19[2]})
+	); // R: l3p21[0], l3p20[1:0], l3p19[2:0]
+	counter7b3 cnt7bl2p20 (
+		.x ({l2p20, 1'b0}),
+		.y ({l3p22[0], l3p21[1], l3p20[2]})
+	); // R: l3p22[0], l3p21[1:0], l3p20[2:0]
+	counter7b3 cnt7bl2p21 (
+		.x ({l2p21, 1'b0}),
+		.y ({l3p23[0], l3p22[1], l3p21[2]})
+	); // R: l3p23[0], l3p22[1], l3p21[2]
+	counter7b3 cnt7bl2p22 (
+		.x (l2p22),
+		.y ({l3p24[0], l3p23[1], l3p22[2]})
+	); // R: l3p23[0], l3p23[1:0], l3p22[2:0]
+	counter7b3 cnt7bl2p23 (
+		.x ({l2p23, 3'b000}),
+		.y ({l3p25[0], l3p24[1], l3p23[2]})
+	); // R: l3p25[0], l3p24[1:0], l3p23[2:0]
+	fa fal3p24 (
+		.x (l2p24),
+		.y ({l3p25[1], l3p24[2]})
+	); // R: l3p25[1:0], l3p24[2:0]
+	fa fal3p25 (
+		.x (l2p25),
+		.y ({l3p26[0], l3p25[2]})
+	); // R: l3p26[0], l3p25[1:0]
+	fa fal3p26 (
+		.x (l2p26),
+		.y ({l3p27[0], l3p26[1]})
+	); // R: l3p27[0], l3p26[1:0]
+	fa fal3p27 (
+		.x (l2p28),
+		.y ({l3p28[0], l3p27[1]})
+	); // R: l3p28[0], l3p27[1:0]
+	fa fal3p28 (
+		.x (l2p28),
+		.y ({l3p29[0], l3p28[1]})
+	); // R: l3p29[0], l3p28[1:0]
+	fa fal3p29 (
+		.x (l2p29),
+		.y ({l3p30[0], l3p29[1]})
+	); // R: l3p30[0], l3p29[1:0]
+	ha hal3p30 (
+		.x (l2p30),
+		.y ({l3p31, l3p20[1]})
+	); // R: l3p31, l3p30[1:0]
+	// ===== END L2 =====
 
 	//assign z[15:0] = x;
 	//assign z[31:16] = y;
