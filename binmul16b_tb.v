@@ -6,6 +6,7 @@ module binmul16b_tb;
 	reg [15:0] x;
 	reg [15:0] y;
 	wire [31:0] z;
+	reg [31:0] zmul;
 
 	multiplier16b mul16b (
 		.x (x),
@@ -22,6 +23,7 @@ module binmul16b_tb;
 		$display("test: multiplier16b");
 		x = 16'hdead;
 		y = 16'hbeef;
+		zmul = x * y;
 		#10;
 		$finish;
 	end

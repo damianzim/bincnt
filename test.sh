@@ -12,3 +12,7 @@ vvp bin/bincnt7b3
 
 iverilog -Wall -g2012 -o bin/binmul16b binmul16b.v bincnt.v binmul16b_tb.v
 vvp bin/binmul16b
+
+python3 gentestmul.py
+iverilog -Wall -g2012 -o bin/testmul binmul16b.v bincnt.v testmul_tb.v
+vvp bin/testmul
