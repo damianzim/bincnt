@@ -1,27 +1,26 @@
-
 // vim: ts=4 sts=0 sw=0 noet
 `default_nettype none
 `timescale 1ns / 1ns
 
 module testmul_tb;
-  reg [15:0] x [999:0];
-  reg [15:0] y [999:0];
-  reg [15:0] xin;
-  reg [15:0] yin;
-  reg [31:0] zmul;
-  wire [31:0] z;
-  integer i;
+	reg [15:0] x [999:0];
+	reg [15:0] y [999:0];
+	reg [15:0] xin;
+	reg [15:0] yin;
+	reg [31:0] zmul;
+	wire [31:0] z;
+	integer i;
 
-  multiplier16b mul16b (
-	.x (xin),
-	.y (yin),
-	.z (z)
-  );
+	multiplier16b mul16b (
+		.x (xin),
+		.y (yin),
+		.z (z)
+	);
 
-  initial begin
-	$dumpfile("testmul_tb.vcd");
-	$dumpvars(0, testmul_tb);
-  end
+	initial begin
+		$dumpfile("testmul_tb.vcd");
+		$dumpvars(0, testmul_tb);
+	end
 
 	assign x[0] = 16'hc53e; assign y[0] = 16'hd755;
 	assign x[1] = 16'h14ba; assign y[1] = 16'h8490;
@@ -1024,16 +1023,16 @@ module testmul_tb;
 	assign x[998] = 16'h5eb8; assign y[998] = 16'h58e0;
 	assign x[999] = 16'hb883; assign y[999] = 16'h890c;
 
-  initial begin
-	$display("test: testmul");
-	for (i = 0; i < $size(x); i = i + 1) begin
-	  xin = x[i];
-	  yin = y[i];
-	  zmul = xin * yin;
-	  #10;
-	  if (zmul != z)
-		$display("xin=0x%4H yin=0x%4H got=%8H expected=%8H", xin, yin, z, zmul);
+	initial begin
+		$display("test: testmul");
+		for (i = 0; i < $size(x); i = i + 1) begin
+			xin = x[i];
+			yin = y[i];
+			zmul = xin * yin;
+			#10;
+			if (zmul != z)
+				$display("xin=0x%4H yin=0x%4H got=%8H expected=%8H", xin, yin, z, zmul);
+		end
+		$finish;
 	end
-	$finish;
-  end
 endmodule

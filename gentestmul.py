@@ -6,46 +6,45 @@ import sys
 
 N = 1000
 
-HEADER = """
-// vim: ts=4 sts=0 sw=0 noet
+HEADER = """// vim: ts=4 sts=0 sw=0 noet
 `default_nettype none
 `timescale 1ns / 1ns
 
 module testmul_tb;
-  reg [15:0] x [{}:0];
-  reg [15:0] y [{}:0];
-  reg [15:0] xin;
-  reg [15:0] yin;
-  reg [31:0] zmul;
-  wire [31:0] z;
-  integer i;
+\treg [15:0] x [{}:0];
+\treg [15:0] y [{}:0];
+\treg [15:0] xin;
+\treg [15:0] yin;
+\treg [31:0] zmul;
+\twire [31:0] z;
+\tinteger i;
 
-  multiplier16b mul16b (
-	.x (xin),
-	.y (yin),
-	.z (z)
-  );
+\tmultiplier16b mul16b (
+\t\t.x (xin),
+\t\t.y (yin),
+\t\t.z (z)
+\t);
 
-  initial begin
-	$dumpfile("testmul_tb.vcd");
-	$dumpvars(0, testmul_tb);
-  end
+\tinitial begin
+\t\t$dumpfile("testmul_tb.vcd");
+\t\t$dumpvars(0, testmul_tb);
+\tend
 
 """
 
 FOOTER = """
-  initial begin
-	$display("test: testmul");
-	for (i = 0; i < $size(x); i = i + 1) begin
-	  xin = x[i];
-	  yin = y[i];
-	  zmul = xin * yin;
-	  #10;
-	  if (zmul != z)
-		$display("xin=0x%4H yin=0x%4H got=%8H expected=%8H", xin, yin, z, zmul);
-	end
-	$finish;
-  end
+\tinitial begin
+\t\t$display("test: testmul");
+\t\tfor (i = 0; i < $size(x); i = i + 1) begin
+\t\t\txin = x[i];
+\t\t\tyin = y[i];
+\t\t\tzmul = xin * yin;
+\t\t\t#10;
+\t\t\tif (zmul != z)
+\t\t\t\t$display("xin=0x%4H yin=0x%4H got=%8H expected=%8H", xin, yin, z, zmul);
+\t\tend
+\t\t$finish;
+\tend
 endmodule
 """
 
